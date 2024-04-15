@@ -1,0 +1,30 @@
+
+.post {
+    background: rgba(255, 255, 255, 0.10);
+
+    grid-area: p;
+    display: grid;
+
+    grid-template-areas:
+     ' img i l';
+
+
+    /*grid-template-rows: 80px 1fr;*/
+    grid-template-columns: 1fr 10fr 1fr;
+}
+
+
+.item {
+    padding-top: 5px;
+    grid-area: i;
+    color: white;
+    -webkit-text-stroke: 1px black;
+}
+.img {
+    grid-area: img;
+    width: 50px;
+    border-radius: 30px;
+}
+.like {
+    grid-area: l;
+}

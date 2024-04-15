@@ -1,0 +1,43 @@
+.nav {
+    background-color: crimson;
+    grid-area: n;
+
+
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+
+.item a.active{
+    color: gold;
+}
+
+
+.friendsNavbar{
+    display: grid;
+    grid-template-columns: 4fr;
+    grid-template-areas:
+     ' f f f ';
+
+}
+.friends {
+    grid-area: f;
+    display: grid;
+    grid-template-rows: 4fr  4fr;
+    grid-template-areas:
+     ' i '
+     ' n ';
+
+}
+
+.imgFriends {
+    grid-area: i;
+    height: 30px;
+    border-radius: 50%;
+}
+.friendsName{
+    grid-area: n;
+    font-size: x-small;
+}
