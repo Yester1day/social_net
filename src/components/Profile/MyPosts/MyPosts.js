@@ -8,14 +8,12 @@ const MyPosts = (props) => {
     let newPostElement = React.createRef();
 
     let addPost = () => {
-        let text = newPostElement.current.value;
-        props.addPost(text)
-        props.updateNewPostText('')
+        props.addPost()
     }
 
     let onPostChange = () =>{
         let text = newPostElement.current.value;
-        props.updateNewPostText(text);
+        props.updateNewPostText(text);  //передаем новый текст пользователя в бизнес через функцию
 
     }
 
@@ -23,9 +21,9 @@ const MyPosts = (props) => {
         <div>
             Posts
             <div>
-                <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}>
-
-                </textarea>
+                <textarea onChange={onPostChange}
+                          ref={newPostElement}
+                          value={props.newPostText}/>
                 <button onClick={addPost}>*</button>
             </div>
             <div className={s.item}>
