@@ -1,6 +1,7 @@
+import profileReducer from "./profile-reducer";
+import dialogReducer from "./dialog-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
 let store = {
     _state: {
@@ -10,7 +11,6 @@ let store = {
                 {id: 2, message: 'I m Dima', likeCount: '10'},
                 {id: 3, message: 'this is my first post ', likeCount: '50'},
                 {id: 4, message: 'hello world', likeCount: '19'},
-                {id: 5, message: 'see you', likeCount: '6'},
             ],
             newPostText: 'title',
         },
@@ -36,17 +36,19 @@ let store = {
                     name: 'Vlad',
                     imgLink: 'https://avatars.mds.yandex.net/i?id=04c658f4fc52034e2322cdecaa75ba0584fe06a5-12416107-images-thumbs&n=13'
                 },
-            ], messages: [
+            ],
+            messages: [
                 {id: 1, message: 'Hello'},
                 {id: 2, message: 'How are u?'},
-                {id: 3, message: 'my number 7395793692986'}
-            ]
-        }
+            ],
+             newNessageBody: ''
+
+        },
+        sidebar: {}
     },
     _callSubscriber() {   //rerenderEntereTree
         console.log('rerender')
     },
-
     getState() {
         return this._state;
     },
@@ -65,28 +67,16 @@ let store = {
     //     this._state.profilePage.newPostText = newText;
     //     this._callSubscriber(this._state);
     // },
-
-
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 6, message: this._state.profilePage.newPostText, likeCount: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state)
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogPage = dialogReducer(this._state.dialogPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
         }
-    },
 }
 
-export const addPostActionCreator = () =>({ type: ADD_POST});
 
-export const updateNewPostTextActionCreator = (text) =>({type: UPDATE_NEW_POST_TEXT, newText: text
-});
 
 
 export default store;
