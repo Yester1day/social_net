@@ -47,7 +47,6 @@ let store = {
         sidebar: {}
     },
     _callSubscriber() {   //rerenderEntereTree
-        console.log('rerender')
     },
     getState() {
         return this._state;
@@ -80,7 +79,7 @@ let store = {
 
 
 export default store;
-window.store = store
+window.store = store;
 
 
 
