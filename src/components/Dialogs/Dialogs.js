@@ -2,24 +2,22 @@ import s from './Dialogs.module.css'
 import React from 'react'
 import DialogItem from "./DialogItem/DialogItem";
 import MessageItem from "./MessageItem/MessageItem";
-import {sendMessageCreator, updateNewMessageCreator} from "../../redux/dialog-reducer";
-
 
 
 const Dialogs = (props) => {
-    let state = props.store.getState().dialogPage;
+    let state = props.dialogsPage;
 
     let DialogElement = state.dialogs.map(d => <li><DialogItem name={d.name} id={d.id} link={d.imgLink}/></li>)   //мапим каждый элемент списка пользователей с сервера
     let MessageElement = state.messages.map(m => <MessageItem message={m.message}/>)
     let newMessageBody = state.newNessageBody;
 
     let onSendMessageClick = () =>{
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage();
 
     }
     let onNewMessageChange = (e) =>{
        let body = e.target.value;
-       props.store.dispatch(updateNewMessageCreator(body))
+        props.updateNewMessageBody(body);
 
     }
 
@@ -36,7 +34,7 @@ const Dialogs = (props) => {
             <div>
                 <textarea placeholder='Enter your message'
                           value={newMessageBody}
-                onChange={onNewMessageChange}></textarea>
+                          onChange={onNewMessageChange}>Enter your mail</textarea>
                 <button onClick={onSendMessageClick}>Send</button>
             </div>
         </div>

@@ -11,14 +11,13 @@ const MyPosts = (props) => {
     let PostElement = props.posts.map(posts => <Post message={posts.message} likeCount={posts.likeCount}/>)
     let newPostElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostCreator() )
+    let onAddPost = (props) => {
+        props.addPost();
     }
 
     let onPostChange = () =>{
         let text = newPostElement.current.value;
-        let action = updateNewPostTextCreator(text);  //передаем новый текст пользователя в бизнес через функцию
-        props.dispatch(action)
+        props.updateNewPostText(text)
 
     }
 
@@ -29,7 +28,7 @@ const MyPosts = (props) => {
                 <textarea onChange={onPostChange}
                           ref={newPostElement}
                           value={props.newPostText}/>
-                <button onClick={addPost}>*</button>
+                <button onClick={onAddPost}>*</button>
             </div>
             <div className={s.item}>
                 {PostElement}
