@@ -41,7 +41,7 @@ let store = {
                 {id: 1, message: 'Hello'},
                 {id: 2, message: 'How are u?'},
             ],
-             newNessageBody: ''
+             newMessageBody: ''
 
         },
         sidebar: {}
