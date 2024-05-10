@@ -43,7 +43,7 @@ let initialState = {
          case SEND_MESSAGE: {
              let stateCopy = {...state};
              stateCopy.newMessageBody = {...state.newMessageBody};
-             stateCopy.messages = {...state.messages};
+             stateCopy.messages = [...state.messages];
              let body = stateCopy.newMessageBody;
              stateCopy.newMessageBody = '';
              stateCopy.messages.push({id: 6, message: body});
